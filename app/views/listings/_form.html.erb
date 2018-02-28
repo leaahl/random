@@ -1,0 +1,59 @@
+<%= form_with(model: listing, local: true) do |form| %>
+  <% if listing.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(listing.errors.count, "error") %> prohibited this listing from being saved:</h2>
+
+      <ul>
+      <% listing.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :title, class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-10">
+    <%= form.text_area :title, id: :listing_title, class: "form control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :description, class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-10">
+    <%= form.text_area :description, id: :listing_description, class: "form control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :price, class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-10">
+    <%= form.text_field :price, id: :listing_price, class: "form control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :active, class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-10">
+    <%= form.check_box :active, id: :listing_active, class: "form control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :brand, class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-10">
+    <%= form.text_field :brand, id: :listing_brand, class: "form control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :condition, class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-10">
+    <%= form.select :condition, Listing.conditions.keys.map { |w| [w.humanize, w] }, id: :listing_condition, class: "form control" %>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
