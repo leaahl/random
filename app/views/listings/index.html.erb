@@ -6,8 +6,7 @@
   <% @listings.each do |listing| %>
     <div class="col-md-4">
       <div class="card mb-4 box-shadow">
-        <img class="card-img-top" src="https://pbs.twimg.com/profile_images/2845868549/3ff0552fc3d5cd7a8da59a83b30eda78_400x400.jpeg" alt="Card image cap">
-        <div class="card-body">
+        <%= image_tag(listing.images[0].url(:thumb), class: "card-img-top") %>
           <p class="card-text"><%= listing.title %></p>
           <div class="d-flex justify-content-between align-items-center">
             <div class="btn-group">

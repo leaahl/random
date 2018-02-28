@@ -10,17 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180227082540) do
+ActiveRecord::Schema.define(version: 20180228064323) do
 
   create_table "listings", force: :cascade do |t|
-    t.string "title"
+    t.string "title", null: false
     t.text "description"
-    t.float "price"
-    t.boolean "active"
+    t.float "price", null: false
+    t.boolean "active", default: true, null: false
     t.string "brand"
     t.integer "condition"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "images"
   end
 
 end

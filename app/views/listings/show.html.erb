@@ -3,7 +3,9 @@
   <h1><%= @listing.title %></h1>
     <div class="row">
       <div class="col">
-        [ Images ]<br><br><br><br><br>
+        <% @listing.images.each do |image| %>
+        <%= link_to image_tag(image.url(:thumb)), image.url, target: :_blank %>
+      <% end %>
         <p> <%= @listing.description %> </p>
       </div>
   <div class="col">
