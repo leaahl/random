@@ -5,7 +5,13 @@ class ListingsController < ApplicationController
   # GET /listings
   # GET /listings.json
   def index
-    @listings = Listing.where(active: true)
+    #@listings = Listing.where(active: true)
+
+    @listings = if params[:query].present?
+    Listing.where(active: true).search(params[:query])
+  else
+    Listing.all.where(active: true)
+  end
   end
 
   # GET /listings/1
@@ -62,6 +68,12 @@ class ListingsController < ApplicationController
     end
   end
 
+  def autocomplete
+    render json: Listing.search(params[:query], autocomplete: false, limit: 10).map do |listing|
+      { title: listing.title, value: listing.id }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_listing
@@ -74,4 +86,5 @@ class ListingsController < ApplicationController
         :title, :description, :price, :active, :brand, :condition, {images: []}
       )
     end
+
 end

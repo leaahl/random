@@ -6,4 +6,13 @@ class Listing < ApplicationRecord
   mount_uploaders :images,ImageUploader
   serialize :images, JSON
 
+  searchkick word_start: [:title]
+
+  def search_data
+    {
+      title: title,
+      description: description,
+      brand: brand
+    }
+  end
 end

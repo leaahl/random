@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
-  resources :listings
-  root to: redirect('/about')
-  get '/listings', to: 'listings#index'
+  root to: 'listings#index'
 
-  get '/listings/:id/edit', to: 'listings#edit'
+  resources :listings do
+    collection do
+      get :autocomplete
+    end
+  end
 
   get '/privacy_policy', to: 'pages#privacy_policy'
 
@@ -14,8 +16,6 @@ Rails.application.routes.draw do
   get '/contact', to: 'pages#contact'
 
   get '/about', to: 'listings#index'
-
-  resources :listings
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

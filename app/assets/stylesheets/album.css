@@ -2,6 +2,17 @@
   --jumbotron-padding-y: 3rem;
 }
 
+.stick-to-bottom {
+  bottom: 0;
+}
+
+.row-eq-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+}
+
 .jumbotron {
   padding-top: var(--jumbotron-padding-y);
   padding-bottom: var(--jumbotron-padding-y);
