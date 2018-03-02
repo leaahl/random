@@ -7,11 +7,11 @@ class ListingsController < ApplicationController
   def index
     @default_image = "https://www.fidosavvy.com/images/sick_beagle_puppy.jpg"
 
-    @listings = if params[:query].present?
-    Listing.where(active: true).search(params[:query], fields: [:title, :description, :brand])
-  else
-    Listing.all.where(active: true)
-  end
+    @listings = if params[:listings_search]
+      Listing.where('title LIKE ?', "%#{params[:listings_search]}%")
+    else
+      Listing.all
+    end
   end
 
   # GET /listings/1
@@ -83,7 +83,7 @@ class ListingsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def listing_params
       params.require(:listing).permit(
-        :title, :description, :price, :active, :brand, :condition, {images: []}, :category_id
+        :title, :description, :price, :active, :brand, :condition, {images: []}, :category_id, :listings_search
       )
     end
 

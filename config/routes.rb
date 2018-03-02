@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :users
   resources :categories
   root to: 'listings#index'
 
@@ -17,6 +18,8 @@ Rails.application.routes.draw do
   get '/contact', to: 'pages#contact'
 
   get '/about', to: 'listings#index'
+
+  get '/user', to: 'users#new'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

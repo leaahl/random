@@ -2,7 +2,12 @@
 
 <h1>Listings</h1>
 <!-- <%= text_field_tag :query, params[:query], class: 'form-control typeahead' %> -->
-<%= text_field_tag :query, params[:query], class: 'js-listings-autocomplete' %>
+<!-- <%= text_field_tag :query, params[:query], class: 'js-listings-autocomplete' %> -->
+
+<%= form_tag(listings_path, method: :get) do %>
+  <%= text_field_tag :listings_search %>
+  <%= submit_tag 'Search' %>
+<% end %>
 
 <div class="row">
   <% @listings.each do |listing| %>
