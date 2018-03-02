@@ -5,10 +5,10 @@ class ListingsController < ApplicationController
   # GET /listings
   # GET /listings.json
   def index
-    #@listings = Listing.where(active: true)
+    @default_image = "https://www.fidosavvy.com/images/sick_beagle_puppy.jpg"
 
     @listings = if params[:query].present?
-    Listing.where(active: true).search(params[:query])
+    Listing.where(active: true).search(params[:query], fields: [:title, :description, :brand])
   else
     Listing.all.where(active: true)
   end
@@ -32,7 +32,7 @@ class ListingsController < ApplicationController
   # POST /listings.json
   def create
     @listing = Listing.new(listing_params)
-
+    @listing.category_id = params[:category_id]
     respond_to do |format|
       if @listing.save
         format.html { redirect_to @listing, notice: 'Listing was successfully created.' }
@@ -83,7 +83,7 @@ class ListingsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def listing_params
       params.require(:listing).permit(
-        :title, :description, :price, :active, :brand, :condition, {images: []}
+        :title, :description, :price, :active, :brand, :condition, {images: []}, :category_id
       )
     end
 

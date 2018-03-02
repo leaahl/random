@@ -1,13 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Listings</h1>
-<%= text_field_tag :query, params[:query], class: 'form-control typeahead' %>
+<!-- <%= text_field_tag :query, params[:query], class: 'form-control typeahead' %> -->
+<%= text_field_tag :query, params[:query], class: 'js-listings-autocomplete' %>
 
 <div class="row">
   <% @listings.each do |listing| %>
     <div class="col-6 col-md-3 row-eq-height ">
       <div class="card mb-4 box-shadow">
-        <%= image_tag(listing.images[0].url(:thumb), class: "card-img-top") %>
+        <% if listing.images.present? %>
+          <%= image_tag(listing.images[0].url(:thumb), class: "card-img-top") %>
+        <% else %>
+          <%= image_tag(@default_image, class: "card-img-top") %>
+        <% end %>
           <p class="card-text"><%= listing.title %></p>
           <div class="d-flex justify-content-between align-items-center stick-to-bottom">
             <div class="btn-group">

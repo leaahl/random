@@ -42,6 +42,8 @@ GEM
       public_suffix (>= 2.0.2, < 4.0)
     arel (8.0.0)
     bindex (0.5.0)
+    bootstrap-typeahead-rails (0.10.5.1)
+      railties (>= 3.0)
     builder (3.2.3)
     byebug (10.0.0)
     capybara (2.18.0)
@@ -199,6 +201,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootstrap-typeahead-rails
   byebug
   capybara (~> 2.13)
   carrierwave (~> 1.0)
