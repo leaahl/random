@@ -13,5 +13,4 @@
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
-
-//= require typeahead
+//= require bootstrap-typeahead-rails
